@@ -17,7 +17,7 @@ export default function Home() {
 
     const link = document.createElement("a");
     link.href = qrCode;
-    link.download = "qrcode.jpeg";
+    link.download = "qrcode.png";
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
@@ -31,7 +31,7 @@ export default function Home() {
       </button>
       <div className="mt-10"/>
       {qrSent && <p className="mt-10">Generating qr code...</p>}
-      {qrCodeURL && <Image src={qrCodeURL} alt="qrcode" width={400} height={400} typeof="image/jpeg" />}
+      {qrCodeURL && <Image src={qrCodeURL} alt="qrcode" width={400} height={400} />}
     </main>
   )
 }

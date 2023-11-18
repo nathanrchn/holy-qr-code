@@ -76,12 +76,17 @@ async function vouchers(token: string) {
 }
 
 export async function GET(request: Request) {
-    const email = get_random_email()
-    const password = get_random_string(10)
-    await register(email, password)
-    const [token, qr_code] = await auth(email, password)
-    await add_code(token)
-    await vouchers(token)
+    // const email = get_random_email()
+    // const password = get_random_string(10)
+    // await register(email, password)
+    // const [token, qr_code] = await auth(email, password)
+    // await add_code(token)
+    // await vouchers(token)
+
+    const qr_code = "Super"
+    
+    const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
+    await sleep(5000);
 
     return new Response(JSON.stringify({ qr_code }), { status: 200 })
 }
