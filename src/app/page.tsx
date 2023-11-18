@@ -5,9 +5,11 @@ import Image from "next/image";
 import { useState } from "react";
 
 export default function Home() {
+  const [qrSent, setQrSent] = useState(false);
   const [qrCodeURL, setQrCodeURL] = useState("");
 
   const getQrCode = async () => {
+    setQrSent(true);
     const res = await fetch("/getqr");
     const data = await res.json();
     const qrCode = await QRCode.toDataURL(data.qr_code);
@@ -19,6 +21,7 @@ export default function Home() {
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
+    setQrSent(false);
   }
 
   return (
@@ -27,7 +30,8 @@ export default function Home() {
         Generate qr code
       </button>
       <div className="mt-10"/>
-      {qrCodeURL && <Image src={qrCodeURL} alt="qrcode" width={200} height={200}  />}
+      {qrSent && <p className="mt-10">Generating qr code...</p>}
+      {qrCodeURL && <Image src={qrCodeURL} alt="qrcode" width={400} height={400} typeof="image/jpeg" />}
     </main>
   )
 }
