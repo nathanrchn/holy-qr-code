@@ -15,12 +15,12 @@ export default function Home() {
     const qrCode = await QRCode.toDataURL(data.qr_code);
     setQrCodeURL(qrCode);
 
-    const link = document.createElement("a");
-    link.href = qrCode;
-    link.download = "qrcode.png";
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
+    // const link = document.createElement("a");
+    // link.href = qrCode;
+    // link.download = "qrcode.png";
+    // document.body.appendChild(link);
+    // link.click();
+    // document.body.removeChild(link);
     setQrSent(false);
   }
 
