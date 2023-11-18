@@ -15,7 +15,7 @@ export default function Home() {
 
     const link = document.createElement("a");
     link.href = qrCode;
-    link.download = "qrcode.jpg";
+    link.download = "qrcode.jpeg";
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
