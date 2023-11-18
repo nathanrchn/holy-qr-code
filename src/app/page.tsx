@@ -1,15 +1,22 @@
 "use client"
+import QRCode from "qrcode";
+import Image from "next/image";
 import { useState } from "react";
-import { useQRCode } from "next-qrcode";
 
 export default function Home() {
-  const [qrCode, setQrCode] = useState("");
-  const { Canvas } = useQRCode();
+  const [qrCodeURL, setQrCodeURL] = useState("");
 
   const getQrCode = async () => {
     const res = await fetch("/getqr");
     const data = await res.json();
-    setQrCode(data.qr_code);
+    const qrCode = await QRCode.toDataURL(data.qr_code);
+    setQrCodeURL(qrCode);
+
+    const link = document.createElement("a");
+    link.href = qrCode;
+    link.download = "qrcode.png";
+    document.body.appendChild(link);
+    link.click();
   }
 
   return (
@@ -18,7 +25,7 @@ export default function Home() {
         Generate qr code
       </button>
       <div className="mt-10"/>
-      {qrCode && <Canvas text={qrCode} options={{scale: 4, width: 200}} />}
+      {qrCodeURL && <Image src={qrCodeURL} alt="qrcode" width={200} height={200} />}
     </main>
   )
 }
