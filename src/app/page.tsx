@@ -15,9 +15,10 @@ export default function Home() {
 
     const link = document.createElement("a");
     link.href = qrCode;
-    link.download = "qrcode.png";
+    link.download = "qrcode.jpg";
     document.body.appendChild(link);
     link.click();
+    document.body.removeChild(link);
   }
 
   return (
@@ -26,7 +27,7 @@ export default function Home() {
         Generate qr code
       </button>
       <div className="mt-10"/>
-      {qrCodeURL && <Image src={qrCodeURL} alt="qrcode" width={200} height={200} />}
+      {qrCodeURL && <Image src={qrCodeURL} alt="qrcode" width={200} height={200}  />}
     </main>
   )
 }
