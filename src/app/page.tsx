@@ -1,4 +1,5 @@
 "use client"
+
 import QRCode from "qrcode";
 import Image from "next/image";
 import { useState } from "react";
